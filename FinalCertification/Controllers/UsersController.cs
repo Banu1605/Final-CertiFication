@@ -15,7 +15,7 @@ namespace FinalCertification.Controllers
     [RoutePrefix("api/user")]
     public class UsersController : ApiController
     {
-        private ebizEntities2 db = new ebizEntities2();
+        private masterEntities db = new masterEntities();
 
         // GET: api/Users
         [Route("GetUsers")]
@@ -25,6 +25,7 @@ namespace FinalCertification.Controllers
         }
 
         // GET: api/Users/5
+        [Route("GetUser/id")]
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(string id)
         {
@@ -38,6 +39,7 @@ namespace FinalCertification.Controllers
         }
 
         // PUT: api/Users/5
+        [Route("PutUser/id")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(string id, User user)
         {
@@ -73,6 +75,7 @@ namespace FinalCertification.Controllers
         }
 
         // POST: api/Users
+        [Route("PostUser")]
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
@@ -103,6 +106,7 @@ namespace FinalCertification.Controllers
         }
 
         // DELETE: api/Users/5
+        [Route("DeleteUser/id")]
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(string id)
         {

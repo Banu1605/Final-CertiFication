@@ -13,10 +13,10 @@ namespace FinalCertification.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ebizEntities2 : DbContext
+    public partial class masterEntities : DbContext
     {
-        public ebizEntities2()
-            : base("name=ebizEntities2")
+        public masterEntities()
+            : base("name=masterEntities")
         {
         }
     

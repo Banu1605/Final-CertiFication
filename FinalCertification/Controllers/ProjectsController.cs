@@ -12,17 +12,20 @@ using FinalCertification.Models;
 
 namespace FinalCertification.Controllers
 {
+    [RoutePrefix("api/project")]
     public class ProjectsController : ApiController
     {
-        private ebizEntities2 db = new ebizEntities2();
+        private masterEntities db = new masterEntities();
 
         // GET: api/Projects
+        [Route("GetProjects")]
         public IQueryable<Project> GetProjects()
         {
             return db.Projects;
         }
 
         // GET: api/Projects/5
+        [Route("GetProject/id")]
         [ResponseType(typeof(Project))]
         public IHttpActionResult GetProject(string id)
         {
@@ -35,6 +38,7 @@ namespace FinalCertification.Controllers
             return Ok(project);
         }
 
+        [Route("PutProject/id")]
         // PUT: api/Projects/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProject(string id, Project project)
@@ -71,6 +75,7 @@ namespace FinalCertification.Controllers
         }
 
         // POST: api/Projects
+        [Route("PostProject")]
         [ResponseType(typeof(Project))]
         public IHttpActionResult PostProject(Project project)
         {
@@ -101,6 +106,7 @@ namespace FinalCertification.Controllers
         }
 
         // DELETE: api/Projects/5
+        [Route("DeleteProject/id")]
         [ResponseType(typeof(Project))]
         public IHttpActionResult DeleteProject(string id)
         {

@@ -14,6 +14,7 @@ namespace FinalCertification.Models
     
     public partial class Task
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Task()
         {
             this.Users = new HashSet<User>();
@@ -30,6 +31,7 @@ namespace FinalCertification.Models
     
         public virtual Parent_task Parent_task { get; set; }
         public virtual Project Project { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User> Users { get; set; }
     }
 }

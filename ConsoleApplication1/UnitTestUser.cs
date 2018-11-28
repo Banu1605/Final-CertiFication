@@ -1,31 +1,31 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FinalCertification.Controllers;
 using FinalCertification.Models;
 using System.Web.Http;
 using System.Net;
 using System.Web.Http.Results;
+using NUnit.Framework;
 
 namespace ConsoleApplication1
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTestUser
     {
 
-        [TestMethod]
+        [TestCase]
         public void GetUser()
         {
-           string str = "1";
+            string str = "1";
             UsersController uc = new UsersController();
             Assert.IsNotNull(uc.GetUser(str));
         }
-        [TestMethod]
+        [TestCase]
         public void GetUsers()
         {
             UsersController uc = new UsersController();
             Assert.IsNotNull(uc.GetUsers());
         }
-        [TestMethod]
+        [TestCase]
         public void InsertUser()
         {
             User us = new User();
@@ -33,11 +33,11 @@ namespace ConsoleApplication1
             us.First_Name = "Arul";
             us.Last_Name = "Raj";
             us.Employee_ID = 668010;
-            
+
             UsersController uc = new UsersController();
             Assert.IsNotNull(uc.PostUser(us));
         }
-        [TestMethod]
+        [TestCase]
         public void UpdateUser()
         {
             User us = new User();
@@ -45,21 +45,21 @@ namespace ConsoleApplication1
             us.First_Name = "Arul";
             us.Last_Name = "Raji";
             us.Employee_ID = 668010;
-            
+
             UsersController uc = new UsersController();
-            IHttpActionResult actionResult = uc.PutUser("2", us);  
-            var contentResult = actionResult as NegotiatedContentResult < User > ;
+            IHttpActionResult actionResult = uc.PutUser("2", us);
+            var contentResult = actionResult as NegotiatedContentResult<User>;
             Assert.AreEqual(HttpStatusCode.Accepted, contentResult.StatusCode);
             Assert.IsNotNull(contentResult);
         }
-        [TestMethod]
+        [TestCase]
         public void DeleteUser()
         {
             UsersController uc = new UsersController();
             Assert.IsNotNull(uc.DeleteUser("1"));
         }
 
-       
+
 
     }
 }

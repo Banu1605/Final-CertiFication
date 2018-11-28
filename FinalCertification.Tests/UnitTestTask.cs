@@ -1,29 +1,29 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FinalCertification.Controllers;
 using FinalCertification.Models;
 using System.Web.Http;
+using NUnit.Framework;
 
 namespace FinalCertification.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTestTask
     {
-        [TestMethod]
+        [TestCase]
         public void GetTask()
         {
             TasksController tc = new TasksController();
             Assert.IsNotNull(tc.GetTask("1"));
         }
 
-        [TestMethod]
+        [TestCase]
         public void GetTasks()
         {
             TasksController tc = new TasksController();
             Assert.IsNotNull(tc.GetTasks());
         }
 
-        [TestMethod]
+        [TestCase]
         public void InsertTask()
         {
             Task ts = new Task();
@@ -33,12 +33,13 @@ namespace FinalCertification.Tests
             ts.End_Date = DateTime.Now;
             ts.Priority = "2";
             ts.Status = "InProgress";
+          
 
             TasksController tc = new TasksController();
             Assert.IsNotNull(tc.PostTask(ts));
         }
 
-        [TestMethod]
+        [TestCase]
         public void UpdateTask()
         {
             Task ts = new Task();
@@ -52,7 +53,7 @@ namespace FinalCertification.Tests
             Assert.IsNotNull(tc.PutTask("1",ts));
         }
 
-        [TestMethod]
+        [TestCase]
         public void DeleteTask()
         {
             TasksController tc = new TasksController();

@@ -1,31 +1,31 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FinalCertification.Controllers;
 using FinalCertification.Models;
 using System.Web.Http;
 using System.Net;
 using System.Web.Http.Results;
+using NUnit.Framework;
 
 namespace FinalCertification.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class UnitTestUser
     {
 
-        [TestMethod]
+        [TestCase]
         public void GetUser()
         {
            string str = "1";
             UsersController uc = new UsersController();
             Assert.IsNotNull(uc.GetUser(str));
         }
-        [TestMethod]
+        [TestCase]
         public void GetUsers()
         {
             UsersController uc = new UsersController();
             Assert.IsNotNull(uc.GetUsers());
         }
-        [TestMethod]
+        [TestCase]
         public void InsertUser()
         {
             User us = new User();
@@ -37,7 +37,7 @@ namespace FinalCertification.Tests
             UsersController uc = new UsersController();
             Assert.IsNotNull(uc.PostUser(us));
         }
-        [TestMethod]
+        [TestCase]
         public void UpdateUser()
         {
             User us = new User();
@@ -52,7 +52,7 @@ namespace FinalCertification.Tests
             Assert.AreEqual(HttpStatusCode.Accepted, contentResult.StatusCode);
             Assert.IsNotNull(contentResult);
         }
-        [TestMethod]
+        [TestCase]
         public void DeleteUser()
         {
             UsersController uc = new UsersController();

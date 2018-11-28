@@ -12,17 +12,20 @@ using FinalCertification.Models;
 
 namespace FinalCertification.Controllers
 {
+    [RoutePrefix("api/task")]
     public class TasksController : ApiController
     {
-        private ebizEntities2 db = new ebizEntities2();
+        private masterEntities db = new masterEntities();
 
         // GET: api/Tasks
+        [Route("GetTasks")]
         public IQueryable<Task> GetTasks()
         {
             return db.Tasks;
         }
 
         // GET: api/Tasks/5
+        [Route("GetTask/id")]
         [ResponseType(typeof(Task))]
         public IHttpActionResult GetTask(string id)
         {
@@ -36,6 +39,7 @@ namespace FinalCertification.Controllers
         }
 
         // PUT: api/Tasks/5
+        [Route("PutTask/id")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutTask(string id, Task task)
         {
@@ -71,6 +75,7 @@ namespace FinalCertification.Controllers
         }
 
         // POST: api/Tasks
+        [Route("PostTask")]
         [ResponseType(typeof(Task))]
         public IHttpActionResult PostTask(Task task)
         {
@@ -101,6 +106,7 @@ namespace FinalCertification.Controllers
         }
 
         // DELETE: api/Tasks/5
+        [Route("DeleteTasks/id")]
         [ResponseType(typeof(Task))]
         public IHttpActionResult DeleteTask(string id)
         {
