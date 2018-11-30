@@ -27,35 +27,39 @@ namespace FinalCertification.Tests
         public void InsertProject()
         {
             Project ts = new Project();
-            ts.Project_ID = "1";
-            ts.Project1 = "Unit Testing";
+            ts.Project_ID = "2";
+            ts.Project1 = "Unit Testing1";
             ts.StartDate = DateTime.Now;
             ts.EndDate = DateTime.Now;
             ts.Priority = "2";
             
-
+           
             ProjectsController tc = new ProjectsController();
-            Assert.IsNotNull(tc.PostProject(ts));
+           
+            tc.PostProject(ts);
+            Assert.IsNotNull(tc.GetProject("2"));
         }
 
         [TestCase]
         public void UpdateProject()
         {
             Project ts = new Project();
-            ts.Project_ID = "1";
-            ts.Project1 = "Unit Testing11";
+            ts.Project_ID = "2";
+            ts.Project1 = "Unit Testing12";
             ts.StartDate = DateTime.Now;
             ts.EndDate = DateTime.Now;
             ts.Priority = "2";
             ProjectsController tc = new ProjectsController();
-            Assert.IsNotNull(tc.PutProject("1", ts));
+            tc.PutProject("2", ts);
+            Assert.AreEqual(ts,tc.GetProject("2"));
         }
 
         [TestCase]
         public void DeleteProject()
         {
             ProjectsController tc = new ProjectsController();
-            Assert.IsNotNull(tc.DeleteProject("2"));
+            tc.DeleteProject("2");
+            Assert.IsNull(tc.GetProject("2"));
         }
     }
 }

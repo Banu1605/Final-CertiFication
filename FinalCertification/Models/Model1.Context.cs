@@ -18,6 +18,8 @@ namespace FinalCertification.Models
         public masterEntities()
             : base("name=masterEntities")
         {
+            this.Configuration.ProxyCreationEnabled = true;
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

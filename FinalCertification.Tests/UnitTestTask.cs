@@ -27,16 +27,16 @@ namespace FinalCertification.Tests
         public void InsertTask()
         {
             Task ts = new Task();
-            ts.Task_ID = "1";
+            ts.Task_ID = "5";
             ts.Task1 = "Unit Testing";
             ts.Start_Date = DateTime.Now;
             ts.End_Date = DateTime.Now;
             ts.Priority = "2";
             ts.Status = "InProgress";
-          
-
+            ts.Project_ID = "1";
             TasksController tc = new TasksController();
-            Assert.IsNotNull(tc.PostTask(ts));
+            Assert.IsNotNull(tc.PostTask(ts, "true", "3"));
+
         }
 
         [TestCase]
@@ -49,15 +49,19 @@ namespace FinalCertification.Tests
             ts.End_Date = DateTime.Now;
             ts.Priority = "2";
             ts.Status = "InProgress";
+            User usr = new User();
+            usr.User_ID = "2";
+            usr.Task_ID = ts.Task_ID;
+            ts.Users.Add(usr);
             TasksController tc = new TasksController();
-            Assert.IsNotNull(tc.PutTask("1",ts));
+            Assert.IsNotNull(tc.PutTask("1", ts, "false"));
         }
 
-        [TestCase]
-        public void DeleteTask()
-        {
-            TasksController tc = new TasksController();
-            Assert.IsNotNull(tc.DeleteTask("1"));
-        }
-    }
-}
+        //[TestCase]
+        //public void DeleteTask()
+        //{
+        //    TasksController tc = new TasksController();
+        //    Assert.IsNotNull(tc.DeleteTask("1"));
+        //}
+
+    } }

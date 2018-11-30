@@ -43,6 +43,7 @@ namespace FinalCertification.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(string id, User user)
         {
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -134,6 +135,52 @@ namespace FinalCertification.Controllers
         private bool UserExists(string id)
         {
             return db.Users.Count(e => e.User_ID == id) > 0;
+        }
+
+        public User GetUserDetails(string id)
+        {
+            return db.Users.Find(id);
+        }
+
+        // PUT: api/Users/5
+        [Route("UpdateUser/id")]
+        [ResponseType(typeof(void))]
+        public IHttpActionResult UpdateUser(string id, User user)
+        {
+            User usr = GetUserDetails(id);
+
+            usr.Project_ID = user.Project_ID;
+            usr.Task_ID = user.Task_ID;
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != usr.User_ID)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(usr).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!UserExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
     }
 }
